@@ -4,9 +4,13 @@ let Connection = require('./lib/connection');
 let packet = require('./lib/packet');
 let util = require('./lib/util');
 
+const games = require('./lib/constants');
+
 module.exports = params => {
     let address = params.address;
     let password = params.password;
+    let game = params.game;
+
     let _connection;
     let nextPacketId;
 
@@ -101,7 +105,7 @@ module.exports = params => {
                    if (res.id === ackId) {
                        return false;
                    } else
-                    if (res.id === reqId) {
+                    if ((game && games[game] && games[game] == res.id) || res.id === reqId) {
                         // More data to come
                         if(_connection){
                             disconnect();
