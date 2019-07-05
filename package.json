@@ -1,73 +1,11 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "git+https://github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-        "scope": null,
-        "escapedName": null,
-        "name": null,
-        "rawSpec": "git+https://github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-        "spec": "git+https://github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-        "type": "hosted",
-        "hosted": {
-          "type": "github",
-          "ssh": "git@github.com:knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-          "sshUrl": "git+ssh://git@github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-          "httpsUrl": "git+https://github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-          "gitUrl": "git://github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-          "shortcut": "github:knightzac19/node-srcds-rcon#hanging-connection-fix",
-          "directUrl": "https://raw.githubusercontent.com/knightzac19/node-srcds-rcon/hanging-connection-fix/package.json"
-        }
-      },
-      "D:\\Github\\NodeJS-ArkService"
-    ]
-  ],
-  "_from": "git+https://github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-  "_id": "srcds-rcon@2.2.1",
-  "_inCache": true,
-  "_location": "/srcds-rcon",
-  "_phantomChildren": {},
-  "_requested": {
-    "raw": "git+https://github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-    "scope": null,
-    "escapedName": null,
-    "name": null,
-    "rawSpec": "git+https://github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-    "spec": "git+https://github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-    "type": "hosted",
-    "hosted": {
-      "type": "github",
-      "ssh": "git@github.com:knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-      "sshUrl": "git+ssh://git@github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-      "httpsUrl": "git+https://github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-      "gitUrl": "git://github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-      "shortcut": "github:knightzac19/node-srcds-rcon#hanging-connection-fix",
-      "directUrl": "https://raw.githubusercontent.com/knightzac19/node-srcds-rcon/hanging-connection-fix/package.json"
-    }
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "git+https://github.com/knightzac19/node-srcds-rcon.git#a6154d83359bee08029df3755bf34cc79675b275",
-  "_shasum": "3135a9916f219a65e1aade74d8658792c1870e87",
-  "_shrinkwrap": null,
-  "_spec": "git+https://github.com/knightzac19/node-srcds-rcon.git#hanging-connection-fix",
-  "_where": "D:\\Github\\NodeJS-ArkService",
-  "author": {
-    "name": "Mihai Ene",
-    "email": "dkrandu@yahoo.com"
-  },
-  "bugs": {
-    "url": "https://github.com/randunel/node-srcds-rcon/issues"
-  },
+  "author": "Mihai Ene <dkrandu@yahoo.com>",
   "dependencies": {},
   "description": "A node.js driver for the SRCDS RCON",
   "devDependencies": {
     "mocha": "~2.3.4",
     "should": "~7.1.1"
   },
-  "gitHead": "a6154d83359bee08029df3755bf34cc79675b275",
   "homepage": "https://github.com/randunel/node-srcds-rcon#readme",
   "keywords": [
     "valve",
@@ -81,17 +19,19 @@
   ],
   "license": "Apache-2.0",
   "main": "index.js",
-  "name": "srcds-rcon",
+  "name": "supremegaming-srcds-rcon",
   "optionalDependencies": {},
-  "readme": "node-srcds-rcon\r\n===============\r\n\r\nNode.JS high-level wrapper for SRCDS's remote console (RCON) https://developer.valvesoftware.com/wiki/RCON\r\n\r\n\r\n## Install\r\n\r\n> npm install srcds-rcon\r\n\r\nIf you think the npm version is outdated, you may install from github\r\n\r\n> npm install randunel/node-srcds-rcon\r\n\r\n## Introduction\r\n\r\nThis is a node driver for SRCDS's RCON. While it should work on all SRCDS versions, it has only been tested against the Source 2009 (orangebox) protocol. Development uses the latest CS:GO server build.\r\n\r\nThe current version `2.x` requires node.js version 4.x or newer. For older node.js versions including 0.8, install srcds-rcon `1.1.7`. All development uses node.js 5.x.\r\n\r\n## Testing\r\n\r\nInstall dev dependencies (`npm install` does that by default). Set up a csgo server and bind it to `127.0.0.1:27015`, run it with `-usercon` and `rcon_password test`. Then run `make test`.\r\n\r\nAlternatively, set up a different server and edit `test/integration.test.js` `getIntegrationAuth` to return login details to the desired test server.\r\n\r\n## Usage\r\n\r\n#### First establish connection\r\n\r\n``` javascript\r\nlet Rcon = require('srcds-rcon');\r\nlet rcon = Rcon({\r\n    address: '192.168.1.10',\r\n    password: 'test'\r\n});\r\nrcon.connect().then(() => {\r\n    console.log('connected');\r\n}).catch(console.error);\r\n```\r\n\r\n#### Run commands\r\n\r\n``` javascript\r\nlet rcon = require('srcds-rcon')({\r\n    address: '192.168.1.10',\r\n    password: 'test'\r\n});\r\n\r\nrcon.connect().then(() => {\r\n    return rcon.command('sv_airaccelerate 10').then(() => {\r\n        console.log('changed sv_airaccelerate');\r\n    });\r\n}).then(\r\n    () => rcon.command('status').then(status => console.log(`got status ${status}`))\r\n).then(\r\n    () => rcon.command('cvarlist').then(cvarlist => console.log(`cvarlist is \\n${cvarlist}`))\r\n).then(\r\n    () => rcon.command('changelevel de_dust2').then(() => console.log('changed map'))\r\n).then(\r\n    () => rcon.disconnect()\r\n).catch(err => {\r\n    console.log('caught', err);\r\n    console.log(err.stack);\r\n});\r\n```\r\n\r\n#### Specify command timeout\r\n\r\n``` javascript\r\nrcon.command('cvarlist', 1000).then(console.log, console.error);\r\n```\r\n\r\n#### Disconnect once finished\r\n\r\n``` javascript\r\nrcon.disconnect();\r\n```\r\n\r\n## Errors\r\n\r\nSome errors may contain partial command output. That indicates that the command was run, but reply packets have been lost.\r\n\r\n``` javascript\r\nrcon.command('cvarlist').then(() => {}).catch(err => {\r\n    console.log(`Command error: ${err.message}`);\r\n    if (err.details && err.details.partialResponse) {\r\n        console.log(`Got partial response: ${err.details.partialResponse}`);\r\n    }\r\n});\r\n```\r\n\r\nWhen an error is returned, even if it doesn't contain a partial output, there is no guarantee the command was not run. The protocol uses udp and the packets sometimes get lost. The only guarantee the command did run is when the error contains a partial output.\r\n\r\n",
-  "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/randunel/node-srcds-rcon.git"
+    "url": "git+ssh://git@github.com:Proantagonist/SupremeArkSrcdsRcon.git"
   },
   "scripts": {
     "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "2.2.1"
+  "version": "2.2.1",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  }
 }
